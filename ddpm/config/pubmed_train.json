@@ -1,0 +1,115 @@
+{
+  "name": "PubMedFeature",
+  "phase": "train",
+  // train or val
+  "gpu_ids": [
+    0,
+    1
+  ],
+  "path": {
+    //set the path 
+    "log": "logs",
+    "tb_logger": "tb_logger",
+    "results": "results",
+    "checkpoint": "checkpoint",
+     "resume_state": null
+
+  },
+  "datasets": {
+    "train": {
+      "name": "smap_train",
+      "mode": "HR",
+      // whether need LR img
+      "dataroot": "data/pubmedFeature.npy",
+      "datatype": "time",
+      //lmdb or img, path of img files
+      "l_resolution": 8,
+      // low resolution need to super_resolution 
+      "r_resolution": 128,
+      // high resolution 
+      "batch_size": 32,
+      "num_workers": 4,
+      "use_shuffle": false,
+      "data_len": -1
+      // -1 represents all data used in train
+    },
+    "val": {
+      "name": "smap_val",
+      "mode": "HR",
+      "dataroot": "data/pubmedFeature.npy",
+      "datatype": "time",
+      //lmdb or img, path of img files
+      "l_resolution": 8,
+      "r_resolution": 128,
+      "data_len": -1
+    }
+  },
+  "model": {
+    "which_model_G": "sr3",
+    // use the ddpm or sr3 network structure 
+    "finetune_norm": false,
+    "unet": {
+      "in_channel": 2,
+      "out_channel": 1,
+      "inner_channel": 32,
+      "norm_groups": 16,
+      "channel_multiplier": [
+        1,
+        2,
+        4,
+        8,
+        // 8,
+        // 16,
+        16
+      ],
+      "attn_res": [
+        // 16
+      ],
+      "res_blocks": 1,
+      "dropout": 0
+    },
+    "beta_schedule": {
+      // use munual beta_schedule for acceleration
+      "train": {
+        "schedule": "linear",
+        "n_timestep": 100,
+        "linear_start": 1e-6,
+        "linear_end": 1e-2
+      },
+      "val": {
+        "schedule": "linear",
+        "N_label": 5000,
+        "n_timestep": 100,
+        "linear_start": 1e-6,
+        "linear_end": 1e-2
+      }
+    },
+    "diffusion": {
+    
+      "time_size": 128,
+      
+      "channels": 1,
+      "conditional": true
+      // unconditional generation or unconditional generation(super_resolution)
+    }
+  },
+  "train": {
+    "n_epoch": 3000,
+    "val_freq": 1000,
+    "save_checkpoint_freq": 1000,
+    "print_freq": 10,
+    "optimizer": {
+      "type": "adam",
+      "lr": 3e-6
+    },
+    "ema_scheduler": {
+      // not used now
+      "step_start_ema": 5000,
+      "update_ema_every": 1,
+      "ema_decay": 0.9999
+    }
+  },
+  "wandb": {
+    "project": "distributed_time"
+  }
+}

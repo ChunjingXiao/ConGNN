@@ -1,0 +1,89 @@
+{
+  "name": "CiteSeerFeature",
+  "phase": "test",
+  // train or val
+  "gpu_ids": [
+    0
+  ],
+  "path": {
+    //set the path 
+    "log": "logs",
+    "tb_logger": "tb_logger",
+    "results": "results",
+    "checkpoint": "checkpoint",
+    "resume_state": "experiments/CiteSeerFeature_8_128_100/checkpoint/E1000"
+    // "resume_state": "experiments/distributed_high_sr_ffhq_210901_121212/checkpoint/I830000_E32" //pretrain model or training state
+  },
+  "datasets": {
+    "test": {
+      "name": "citeseer",
+      "mode": "HR",
+      "dataroot": "data/citeseerFeature.npy",
+      "datatype": "time",
+      "l_resolution": 128,
+      "r_resolution": 2048,
+      "data_len": -1
+    }
+  },
+  "model": {
+    "which_model_G": "sr3",
+    // use the ddpm or sr3 network structure 
+    "finetune_norm": false,
+  
+    "unet": {
+
+      "in_channel": 2,
+
+      "out_channel": 1,
+      "inner_channel": 32,
+      "norm_groups": 16,
+      "channel_multiplier": [
+        //Channel Multiplier
+        1,
+        2,
+        4,
+        8,
+        // 8,
+        // 16,
+        16
+      ],
+      "attn_res": [
+
+      ],
+      "res_blocks": 1,
+      "dropout": 0
+    },
+    "beta_schedule": {
+      // use munual beta_schedule for acceleration
+      "train": {
+        "schedule": "linear",
+
+        "n_timestep": 100,
+        "linear_start": 1e-6,
+        "linear_end": 1e-2
+      },
+      "test": {
+        "schedule": "linear",
+
+        "N_label": 5000,
+
+        "n_timestep": 100,
+        "linear_start": 1e-6,
+
+        "linear_end": 1e-2
+      }
+    },
+    "diffusion": {
+
+      "time_size": 2048,
+
+      "channels": 1,
+      //sample channel
+      "conditional": true
+      // unconditional generation or unconditional generation(super_resolution)
+    }
+  },
+  "wandb": {
+    "project": "distributed_time"
+  }
+}
