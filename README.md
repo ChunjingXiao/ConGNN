@@ -1,10 +1,7 @@
-ConDA
+ConGNN
 ============
 
 
-A denoising diffusion probabilistic model-based Data Augmentation method for anomaly detection. 
-
-ConDA can generate augmented data which can keep the category information of the source sample while inclining to the reference sample for enhancing detection performance.
 
 
 ## Requirements
