@@ -12,9 +12,7 @@ sklearn>=0.20.1
 numpy>=1.16
 networkx>=2.1
 
-## Usage
-### Download all files.
-git clone https://github.com/CodeToPublic/Anomaly.git
+
 
 ### How to train 
 
