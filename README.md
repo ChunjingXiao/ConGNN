@@ -5,14 +5,14 @@ These are the code and data for the paper: [Controlled graph neural networks wit
 
 # Citation
 
-@article{li2024controlled,
-&nbsp; &nbsp;  title={Controlled graph neural networks with denoising diffusion for anomaly detection},
-&nbsp; &nbsp;  author={Li, Xuan and Xiao, Chunjing and Feng, Ziliang and Pang, Shikang and Tai, Wenxin and Zhou, Fan},
-&nbsp; &nbsp;  journal={Expert Systems with Applications},
-&nbsp; &nbsp;  volume={237},
-&nbsp; &nbsp;  pages={121533},
-&nbsp; &nbsp;  year={2024},
-&nbsp; &nbsp;  publisher={Elsevier}
+@article{li2024controlled,  
+&nbsp; &nbsp;  title={Controlled graph neural networks with denoising diffusion for anomaly detection},  
+&nbsp; &nbsp;  author={Li, Xuan and Xiao, Chunjing and Feng, Ziliang and Pang, Shikang and Tai, Wenxin and Zhou, Fan},  
+&nbsp; &nbsp;  journal={Expert Systems with Applications},  
+&nbsp; &nbsp;  volume={237},  
+&nbsp; &nbsp;  pages={121533},  
+&nbsp; &nbsp;  year={2024},  
+&nbsp; &nbsp;  publisher={Elsevier}  
 }
 
 
