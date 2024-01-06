@@ -1,7 +1,7 @@
 ConGNN
 ============
 
-These are the code and data for the paper: [Controlled graph neural networks with denoising diffusion for anomaly detection](https://github.com/ChunjingXiao/SFTSeg/blob/main/TMC2022SFTSeg.pdf), Expert Systems with Applications, 2024. https://www.sciencedirect.com/science/article/pii/S0957417423020353
+These are the code and data for the paper: [Controlled graph neural networks with denoising diffusion for anomaly detection](https://github.com/ChunjingXiao/ConGNN/blob/main/ESWA_2024_ConGNN.pdf), Expert Systems with Applications, 2024. https://www.sciencedirect.com/science/article/pii/S0957417423020353
 
 # Citation
 
